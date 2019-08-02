@@ -19,7 +19,7 @@ class LoggedInException(Exception):
 
 class UNIFI_API(object):
 
-    def __init__(self, username: str="admin", password: str="Smhau$31.%", site: str="default", baseurl: str="https://unifi.smarthaus.com.mx:8443", verify: str="/home/capcrunch/Documents/Unifi"):
+    def __init__(self, username: str="admin", password: str="Smhau$31.%", site: str="default", baseurl: str="https://unifi.smarthaus.com.mx:8443", verify: bool = False):
 
         self._login_data = {}
         self._current_satus_code = None
