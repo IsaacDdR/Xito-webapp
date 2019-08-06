@@ -8,11 +8,10 @@ app = Flask(__name__)
 
 def hello_world():
 
-    unifi_user = []
+    while True:
 
-    with UNIFI(username="admin", password="Smhau$31.%", site="default", baseurl="https://unifi.smarthaus.com.mx:8443", verify=False) as unifi:
-        for user in unifi.list_clients():
-            unifi_user.add(user)
+        with UNIFI(username="admin", password="Smhau$31.%", site="default", baseurl="https://unifi.smarthaus.com.mx:8443", verify=False) as unifi:
 
-    return unifi_user
-    
+            for user in unifi.list_clients():
+                return user
+

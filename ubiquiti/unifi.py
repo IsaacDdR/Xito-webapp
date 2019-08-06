@@ -41,16 +41,14 @@ class UNIFI_API(object):
 
     def login(self):
 
-        self._session.mount(self._baseurl, host_header_ssl.HostHeaderSSLAdapter())
-
-        self._current_status_code = self._session.post("{}/api/login".format(self._baseurl), data=json.dumps(self._login_data), headers={"Host": "UniFi"}, verify=self._verify).status_code
+        self._current_status_code = self._session.post("{}/api/login".format(self._baseurl), data=json.dumps(self._login_data), verify=self._verify).status_code
         if self._current_status_code == 400:
             raise LoggedInException("Failed to log in to api with provided credentials")
 
+        return self
     def logout(self):
 
-        self._session.mount(self._baseurl, host_header_ssl.HostHeaderSSLAdapter())
-        self._session.get("{}/logout".format(self._baseurl), headers={"Host": "UniFi"})
+        self._session.get("{}/logout".format(self._baseurl) )
         self._session.close()
 
     def list_clients(self) -> list:
